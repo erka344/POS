@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PosForm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f135672bd7ce718a5763ddbfa55ea4a70d7268a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+993a88f304f085d99a8279b93a3cd089b9fa3104")]
 [assembly: System.Reflection.AssemblyProductAttribute("PosForm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PosForm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
