@@ -17,6 +17,7 @@ namespace PosForm
             this.Hide();
             MainScreen mainScreen = new MainScreen();
             mainScreen.Show();
+            //this.Close();
         }
 
         private void label1_Click(object sender, EventArgs e)

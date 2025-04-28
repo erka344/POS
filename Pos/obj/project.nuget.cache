@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "S8qUq54MQ3w=",
+  "dgSpecHash": "5+BQah8A2l8=",
   "success": true,
   "projectFilePath": "C:\\Users\\erka\\source\\repos\\Pos\\Pos\\Pos.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\erka\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.119\\stub.system.data.sqlite.core.netstandard.1.0.119.nupkg.sha512",
+    "C:\\Users\\erka\\.nuget\\packages\\system.data.sqlite.core\\1.0.119\\system.data.sqlite.core.1.0.119.nupkg.sha512"
+  ],
   "logs": []
 }

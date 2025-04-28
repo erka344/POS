@@ -1,0 +1,13 @@
+C:\Users\erka\source\repos\Pos\PosLibrary\bin\Debug\net7.0\PosLibrary.deps.json
+C:\Users\erka\source\repos\Pos\PosLibrary\bin\Debug\net7.0\PosLibrary.dll
+C:\Users\erka\source\repos\Pos\PosLibrary\bin\Debug\net7.0\PosLibrary.pdb
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.csproj.AssemblyReference.cache
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.AssemblyInfoInputs.cache
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.AssemblyInfo.cs
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.csproj.CoreCompileInputs.cache
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.sourcelink.json
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.dll
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\refint\PosLibrary.dll
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\PosLibrary.pdb
+C:\Users\erka\source\repos\Pos\PosLibrary\obj\Debug\net7.0\ref\PosLibrary.dll
