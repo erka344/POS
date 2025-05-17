@@ -13,253 +13,256 @@ namespace PosForm
 {
     public partial class MainScreen : Form
     {
-        private FlowLayoutPanel categoryPanel;
-        private FlowLayoutPanel productsPanel;
-        private Panel cartPanel;
-        private DataGridView cartGridView;
-        private Label totalPriceLabel;
-        private Button profileButton;
-        private TextBox searchBox;
-        private Dictionary<string, int> categoryIds = new Dictionary<string, int>();
-        private Cart currentCart;
-        private readonly IDatabaseHelper databaseHelper;
-        private data datas;
-        
 
+        Datas data = new Datas();
         public MainScreen()
         {
             InitializeComponent();
-            databaseHelper = new DatabaseHelper();
-            datas = new data();
-            databaseHelper.InitializeDatabase();
-            InitializeUI();
-            InitializeDatabase();
-            LoadCategories();
-            InitializeCart();
+            initialProductPanel();
+            testProductPanel();
+            //data.InitialData();
+        }
+        private void initialProductPanel()
+        {
+            // Row 0 дээр column-ийн нэрсийг Label-ээр тавина
+            Label col1 = new Label();
+            col1.Text = "Item name";
+            col1.TextAlign = ContentAlignment.MiddleCenter;
+            //col1.Dock = DockStyle.Fill;
+            col1.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            Label col2 = new Label();
+            col2.Text = "Quantity";
+            col2.TextAlign = ContentAlignment.MiddleCenter;
+            //col2.Dock = DockStyle.Fill;
+            col2.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            Label col3 = new Label();
+            col3.Text = "U/price";
+            col3.TextAlign = ContentAlignment.MiddleCenter;
+            //col3.Dock = DockStyle.Fill;
+            col3.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            Label col4 = new Label();
+            col4.Text = "Dis%";
+            col4.TextAlign = ContentAlignment.MiddleCenter;
+            //col4.Dock = DockStyle.Fill;
+            col4.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            Label col5 = new Label();
+            col5.Text = "Total";
+            col5.TextAlign = ContentAlignment.MiddleCenter;
+            //col5.Dock = DockStyle.Fill;
+            col5.Font = new Font("Arial", 10, FontStyle.Bold);
+
+            // Хамгийн эхний мөрөнд (row 0) column header тавина
+            productTable.Controls.Add(col1, 0, 0); // Column 0
+            productTable.Controls.Add(col2, 1, 0); // Column 1
+            productTable.Controls.Add(col3, 2, 0); // Column 2
+            productTable.Controls.Add(col4, 3, 0);
+            productTable.Controls.Add(col5, 4, 0);
+
+        }
+        private void LoadProductInProductPanel()
+        {
+            Panel panel = new Panel
+            {
+                Size = new Size(180, 210),
+            };
+
+            // Calculate the location based on the number of existing panels
+            int panelsCount = productsPanel.Controls.Count;
+            int spacing = 10;
+            panel.Location = new Point((180 + spacing) * panelsCount, 3);
+
+            PictureBox pictureBox = new PictureBox
+            {
+                Size = new Size(160, 125),
+                Location = new Point(12, 12),
+                BorderStyle = BorderStyle.FixedSingle,
+            };
+
+            Label ProductNameLabel = new Label
+            {
+                Text = "Product name",
+                AutoSize = true, // AutoSize the label
+                Location = new Point(44, 142),
+            };
+
+            Button AddBtn = new Button
+            {
+                Text = "Add",
+                Size = new Size(150, 30),
+                Location = new Point(13, 175),
+            };
+            AddBtn.Click += (s, e) =>
+            {
+                addProductToProductTable("Croissant", 2.99m);
+            };
+
+            //Button EditBtn = new Button
+            //{
+            //    Text = "Edit",
+            //    Size = new Size(72, 30),
+            //    Location = new Point(100, 175),
+            //};
+
+            panel.Controls.Add(pictureBox);
+            panel.Controls.Add(ProductNameLabel);
+            panel.Controls.Add(AddBtn);
+            //panel.Controls.Add(EditBtn);
+            productsPanel.Controls.Add(panel);
+
+            productsPanel.FlowDirection = FlowDirection.LeftToRight;
+            productsPanel.WrapContents = false;
+            productsPanel.AutoScroll = true;
         }
 
-        private void InitializeDatabase()
+        private void testProductPanel()
         {
-            datas.InitializeDatabase(databaseHelper);
-        }
-
-        private void InitializeUI()
-        {
-            // Main layout
-            this.Size = new Size(1200, 800);
-            this.Text = "POS System";
-
-            // Search box
-            searchBox = new TextBox
+            for (int i = 0; i < 20; i++)
             {
-                Location = new Point(10, 10),
-                Size = new Size(200, 30),
-                PlaceholderText = "Search products..."
-            };
-            searchBox.TextChanged += SearchBox_TextChanged;
-            this.Controls.Add(searchBox);
-
-            // Categories panel
-            categoryPanel = new FlowLayoutPanel
-            {
-                Location = new Point(10, 50),
-                Size = new Size(800, 200),
-                AutoScroll = true
-            };
-            this.Controls.Add(categoryPanel);
-
-            // Products panel
-            productsPanel = new FlowLayoutPanel
-            {
-                Location = new Point(10, 260),
-                Size = new Size(800, 500),
-                AutoScroll = true
-            };
-            this.Controls.Add(productsPanel);
-
-            // Profile button
-            profileButton = new Button
-            {
-                Location = new Point(1100, 10),
-                Size = new Size(40, 40),
-                Text = "👤"
-            };
-            this.Controls.Add(profileButton);
-        }
-
-        private void SearchBox_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(searchBox.Text))
-            {
-                productsPanel.Controls.Clear();
-                return;
+                LoadProductInProductPanel();
+                LoadCategoriesInCategoriesPanel();
             }
-
-            // Search in all categories
-            productsPanel.Controls.Clear();
-            foreach (var category in databaseHelper.GetCategories())
-            {
-                var products = databaseHelper.GetProductsByCategory(category.id)
-                    .Where(p => p.name.Contains(searchBox.Text, StringComparison.OrdinalIgnoreCase));
-
-                foreach (var product in products)
-                {
-                    AddProductToPanel(product.id, product.name, product.price);
-                }
-            }
         }
-
-        private void LoadCategories()
+        private void LoadCategoriesInCategoriesPanel()
         {
-            categoryPanel.Controls.Clear();
-            foreach (var category in databaseHelper.GetCategories())
+            Button categoreBtn = new Button
             {
-                categoryIds[category.name] = category.id;
-                Button categoryBtn = new Button
-                {
-                    Text = category.name,
-                    Size = new Size(120, 80),
-                    BackColor = Color.RoyalBlue,
-                    ForeColor = Color.White,
-                    Margin = new Padding(5),
-                    FlatStyle = FlatStyle.Flat
-                };
-                categoryBtn.Click += (s, e) => LoadProducts(category.id);
-                categoryPanel.Controls.Add(categoryBtn);
-            }
-        }
-
-        private void LoadProducts(int categoryId)
-        {
-            productsPanel.Controls.Clear();
-            var products = databaseHelper.GetProductsByCategory(categoryId);
-            foreach (var product in products)
-            {
-                AddProductToPanel(product.id, product.name, product.price);
-            }
-        }
-
-        private void AddProductToPanel(int productId, string name, decimal price)
-        {
-            Panel productPanel = new Panel
-            {
-                Size = new Size(150, 200),
-                Margin = new Padding(5),
-                BorderStyle = BorderStyle.FixedSingle
+                Text = "categore name",
+                Size = new Size(120, 90),
+                ForeColor = Color.Blue,
             };
 
+            categoriesPanel.Controls.Add(categoreBtn);
+
+            categoriesPanel.FlowDirection = FlowDirection.TopDown;
+            categoriesPanel.WrapContents = true;
+            categoriesPanel.AutoScroll = true;
+
+        }
+        private void addProductToProductTable(string itemName, decimal price)
+        {
+            int rowIndex = productTable.RowCount++;
+
+            // Шинэ мөр нэмэх
+            productTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+
+            // Item Name
             Label nameLabel = new Label
             {
-                Text = name,
-                Location = new Point(5, 120),
-                Size = new Size(140, 20),
-                TextAlign = ContentAlignment.MiddleCenter
+                Text = itemName,
+                TextAlign = ContentAlignment.MiddleLeft,
+                Dock = DockStyle.Fill,
+                Font = new Font("Arial", 10, FontStyle.Regular)
             };
 
+            // Quantity
+            Panel quantityPanel = new Panel
+            {
+                Dock = DockStyle.Fill
+            };
+            TextBox quantityTextBox = new TextBox
+            {
+                Text = "1",
+                Width = 30,
+                Location = new Point(40, 5)
+            };
+            Button plusButton = new Button
+            {
+                Text = "+",
+                Width = 30,
+                Location = new Point(5, 5)
+            };
+            Button minusButton = new Button
+            {
+                Text = "-",
+                Width = 30,
+                Location = new Point(75, 5)
+            };
+
+            quantityPanel.Controls.Add(quantityTextBox);
+            quantityPanel.Controls.Add(plusButton);
+            quantityPanel.Controls.Add(minusButton);
+
+            // Unit Price
             Label priceLabel = new Label
             {
                 Text = $"${price:F2}",
-                Location = new Point(5, 140),
-                Size = new Size(140, 20),
-                TextAlign = ContentAlignment.MiddleCenter
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Fill
             };
 
-            Button addToCartBtn = new Button
+            // Discount
+            Label discountLabel = new Label
             {
-                Text = "Add to Cart",
-                Location = new Point(5, 160),
-                Size = new Size(140, 30)
-            };
-            addToCartBtn.Click += (s, e) => AddToCart(productId, name, price);
-
-            productPanel.Controls.AddRange(new Control[] { nameLabel, priceLabel, addToCartBtn });
-            productsPanel.Controls.Add(productPanel);
-        }
-
-        private void InitializeCart()
-        {
-            // Create a new cart
-            currentCart = new Cart
-            {
-                CreatedDate = DateTime.Now,
-                Status = CartStatus.Active
+                Text = "0%",
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Fill
             };
 
-            // Cart panel
-            cartPanel = new Panel
+            // Total
+            Label totalLabel = new Label
             {
-                Location = new Point(820, 50),
-                Size = new Size(360, 710),
-                BorderStyle = BorderStyle.FixedSingle
+                Text = $"${price:F2}",
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Fill
             };
 
-            // Cart grid
-            cartGridView = new DataGridView
+            // "+" товч дарахад
+            plusButton.Click += (s, e) =>
             {
-                Location = new Point(5, 5),
-                Size = new Size(350, 600),
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-                AllowUserToAddRows = false
-            };
-            cartGridView.Columns.Add("ItemName", "Item Name");
-            cartGridView.Columns.Add("Quantity", "Quantity");
-            cartGridView.Columns.Add("UPrice", "U/Price");
-            cartGridView.Columns.Add("Dis%", "Dis%");
-            cartGridView.Columns.Add("Total", "Total");
-
-            // Total price label
-            totalPriceLabel = new Label
-            {
-                Location = new Point(5, 650),
-                Size = new Size(350, 30),
-                Text = "Total Price: $0.00",
-                Font = new Font(Font.FontFamily, 12, FontStyle.Bold)
+                int qty = int.Parse(quantityTextBox.Text);
+                qty++;
+                quantityTextBox.Text = qty.ToString();
+                totalLabel.Text = $"${(qty * price):F2}";
+                minusButton.Enabled = true;
             };
 
-            cartPanel.Controls.Add(cartGridView);
-            cartPanel.Controls.Add(totalPriceLabel);
-            this.Controls.Add(cartPanel);
-        }
-
-        private void LoadCartItems()
-        {
-            cartGridView.Rows.Clear();
-            var items = databaseHelper.GetCartItems();
-            foreach (var item in items)
+            // "-" товч дарахад
+            minusButton.Click += (s, e) =>
             {
-                decimal total = item.quantity * item.unitPrice * (1 - item.discount / 100);
-                cartGridView.Rows.Add(
-                    item.productName,
-                    item.quantity,
-                    item.unitPrice.ToString("C2"),
-                    item.discount,
-                    total.ToString("C2")
-                );
-            }
-            UpdateTotalPrice();
-        }
-
-        private void AddToCart(int productId, string itemName, decimal price)
-        {
-            databaseHelper.AddToCart(productId, 1, price);
-            LoadCartItems();
-        }
-
-        private void UpdateTotalPrice()
-        {
-            decimal total = 0;
-            foreach (DataGridViewRow row in cartGridView.Rows)
-            {
-                if (row.Cells["Total"].Value != null)
+                int qty = int.Parse(quantityTextBox.Text);
+                if (qty > 1)
                 {
-                    string totalStr = row.Cells["Total"].Value.ToString().Replace("$", "");
-                    if (decimal.TryParse(totalStr, out decimal rowTotal))
-                    {
-                        total += rowTotal;
-                    }
+                    qty--;
+                    quantityTextBox.Text = qty.ToString();
+                    totalLabel.Text = $"${(qty * price):F2}";
                 }
-            }
-            totalPriceLabel.Text = $"Total Price: {total:C2}";
+                else
+                {
+                    minusButton.Enabled = false;
+                }
+            };
+
+            // TableLayoutPanel дээр нэмэх
+            productTable.Controls.Add(nameLabel, 0, productTable.RowCount - 1);
+            productTable.Controls.Add(quantityPanel, 1, productTable.RowCount - 1);
+            productTable.Controls.Add(priceLabel, 2, productTable.RowCount - 1);
+            productTable.Controls.Add(discountLabel, 3, productTable.RowCount - 1);
+            productTable.Controls.Add(totalLabel, 4, productTable.RowCount - 1);
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void categoriesPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PayButton_Click_1(object sender, EventArgs e)
+        {
+            Form payment = new Payment();
+            payment.ShowDialog();
         }
     }
 }

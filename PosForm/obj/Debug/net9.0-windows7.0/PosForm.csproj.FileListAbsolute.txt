@@ -51,3 +51,4 @@ C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\refint\PosFor
 C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.pdb
 C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.genruntimeconfig.cache
 C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\ref\PosForm.dll
+C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.Payment.resources
