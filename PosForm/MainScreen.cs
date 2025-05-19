@@ -15,7 +15,6 @@ namespace PosForm
     public partial class MainScreen : Form
     {
 
-        Datas data = new Datas();
         DataBase Testdb;
 
         public MainScreen()

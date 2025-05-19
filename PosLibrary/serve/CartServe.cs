@@ -22,7 +22,7 @@ namespace PosLibrary.serve
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="product"></param>
         public void AddProductToCart(Product product)
