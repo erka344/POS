@@ -32,7 +32,7 @@
             ExitButton = new Button();
             PrintButton = new Button();
             PayButton = new Button();
-            TotalPrice = new Label();
+            TotalPriceLabel = new Label();
             label1 = new Label();
             categoriesPanel = new FlowLayoutPanel();
             menuStrip1 = new MenuStrip();
@@ -48,18 +48,18 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            label7 = new Label();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // SearchTextBox
             // 
-            SearchTextBox.Location = new Point(608, 67);
+            SearchTextBox.Location = new Point(608, 80);
             SearchTextBox.Multiline = true;
             SearchTextBox.Name = "SearchTextBox";
-            SearchTextBox.Size = new Size(532, 49);
+            SearchTextBox.Size = new Size(532, 36);
             SearchTextBox.TabIndex = 18;
-            SearchTextBox.Text = "search here";
             SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
             // ExitButton
@@ -94,15 +94,15 @@
             PayButton.UseVisualStyleBackColor = true;
             PayButton.Click += PayButton_Click_1;
             // 
-            // TotalPrice
+            // TotalPriceLabel
             // 
-            TotalPrice.AutoSize = true;
-            TotalPrice.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            TotalPrice.Location = new Point(190, 524);
-            TotalPrice.Name = "TotalPrice";
-            TotalPrice.Size = new Size(57, 38);
-            TotalPrice.TabIndex = 14;
-            TotalPrice.Text = "$...";
+            TotalPriceLabel.AutoSize = true;
+            TotalPriceLabel.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TotalPriceLabel.Location = new Point(190, 524);
+            TotalPriceLabel.Name = "TotalPriceLabel";
+            TotalPriceLabel.Size = new Size(49, 38);
+            TotalPriceLabel.TabIndex = 14;
+            TotalPriceLabel.Text = "$0";
             // 
             // label1
             // 
@@ -208,7 +208,6 @@
             label4.Size = new Size(69, 23);
             label4.TabIndex = 2;
             label4.Text = "U/Price";
-            
             // 
             // label3
             // 
@@ -230,11 +229,21 @@
             label2.TabIndex = 0;
             label2.Text = "Item Name";
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(608, 57);
+            label7.Name = "label7";
+            label7.Size = new Size(86, 20);
+            label7.TabIndex = 24;
+            label7.Text = "Search here";
+            // 
             // MainScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1159, 720);
+            Controls.Add(label7);
             Controls.Add(panel1);
             Controls.Add(ProductFlowPanel);
             Controls.Add(productsPanel);
@@ -242,7 +251,7 @@
             Controls.Add(ExitButton);
             Controls.Add(PrintButton);
             Controls.Add(PayButton);
-            Controls.Add(TotalPrice);
+            Controls.Add(TotalPriceLabel);
             Controls.Add(label1);
             Controls.Add(categoriesPanel);
             Controls.Add(menuStrip1);
@@ -263,7 +272,7 @@
         private Button ExitButton;
         private Button PrintButton;
         private Button PayButton;
-        private Label TotalPrice;
+        private Label TotalPriceLabel;
         private Label label1;
         private FlowLayoutPanel categoriesPanel;
         private MenuStrip menuStrip1;
@@ -279,5 +288,6 @@
         private Label label4;
         private Label label3;
         private Label label2;
+        private Label label7;
     }
 }

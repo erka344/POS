@@ -12,11 +12,11 @@ using PosLibrary.model;
 
 namespace PosForm
 {
-    public partial class ProductUC: UserControl
+    public partial class ProductUC : UserControl
     {
         private Product product;
         public ProductUC(Product product)
-        { 
+        {
             this.product = product;
             InitializeComponent();
             LoadingProductUC();
@@ -36,15 +36,16 @@ namespace PosForm
             {
                 ProductImage.Image = Image.FromFile(Path.Combine(Application.StartupPath, "Images", "default.jpg"));
             }
-
+            ProductPriceLabel.Text = $"${product.price}";
             ProductName.Text = product.Name;
         }
 
 
         public event EventHandler AddToCartBtnClicked;
         public void AddToCartBtn_Click(object sender, EventArgs e)
-        { 
+        {
             AddToCartBtnClicked?.Invoke(this, EventArgs.Empty);
         }
+
     }
 }

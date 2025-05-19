@@ -1,4 +1,5 @@
 ﻿using PosLibrary.model;
+using PosLibrary.repo;
 using PosLibrary.repo.@interface;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,10 @@ namespace PosLibrary.serve
     {
         private readonly IUserRepo userRepo;
 
-        public UserServe(IUserRepo repo) { this.userRepo = repo; }
+        public UserServe(string connectionString) 
+        { 
+            userRepo = new UserRepo(connectionString); 
+        }
 
         public User GetUserById(int id)
         {

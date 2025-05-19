@@ -63,7 +63,7 @@ namespace PosForm
 
         private void ReloadCartPanel()
         {
-            ProductFlowPanel.Controls.Clear();
+            ProductFlowPanel.Controls.Clear(); 
 
             foreach (var product in cartServe.Products)
             {
@@ -84,9 +84,11 @@ namespace PosForm
                 row.LoadingRowProductUC();
                 ProductFlowPanel.Controls.Add(row);
             }
+            TotalPriceLabel.Text = $"${cartServe.CalculateTotal()}";
         }
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
+            
             string keyword = SearchTextBox.Text;
             var filteredProducts = productServe.SearchProductByName(keyword);
 
@@ -98,18 +100,6 @@ namespace PosForm
                 productsPanel.Controls.Add(productUC);
             }
         }
-
-        //private void LoadProductInProductPanel(Product product)
-        //{
-        //    ProductUC productUC = new ProductUC(product);
-        //    productUC.AddToCartBtnClicked += (s, args) => AddProductToProductFlowPanel(product);
-
-        //    productsPanel.Controls.Add(productUC);
-
-        //    productsPanel.FlowDirection = FlowDirection.LeftToRight;
-        //    productsPanel.WrapContents = false;
-        //    productsPanel.AutoScroll = true;
-        //}
 
         private void LoadCategoriesInCategoriesPanel()
         {
@@ -165,7 +155,8 @@ namespace PosForm
 
         private void PayButton_Click_1(object sender, EventArgs e)
         {
-            Form payment = new Payment();
+            int totalPrice = cartServe.CalculateTotal();
+            Form payment = new Payment(totalPrice);
             payment.ShowDialog();
         }
 

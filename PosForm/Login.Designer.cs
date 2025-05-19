@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             loginbutton = new Button();
             panel1 = new Panel();
-            Password_textBox = new TextBox();
-            userName_textBox = new TextBox();
+            PasswordTextBox = new TextBox();
+            UserNameTextBox = new TextBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -58,8 +58,8 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             panel1.BackColor = Color.BlanchedAlmond;
-            panel1.Controls.Add(Password_textBox);
-            panel1.Controls.Add(userName_textBox);
+            panel1.Controls.Add(PasswordTextBox);
+            panel1.Controls.Add(UserNameTextBox);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
@@ -71,21 +71,21 @@
             panel1.Size = new Size(815, 685);
             panel1.TabIndex = 2;
             // 
-            // Password_textBox
+            // PasswordTextBox
             // 
-            Password_textBox.Location = new Point(29, 344);
-            Password_textBox.Multiline = true;
-            Password_textBox.Name = "Password_textBox";
-            Password_textBox.Size = new Size(259, 47);
-            Password_textBox.TabIndex = 7;
+            PasswordTextBox.Location = new Point(29, 344);
+            PasswordTextBox.Multiline = true;
+            PasswordTextBox.Name = "PasswordTextBox";
+            PasswordTextBox.Size = new Size(259, 47);
+            PasswordTextBox.TabIndex = 7;
             // 
-            // userName_textBox
+            // UserNameTextBox
             // 
-            userName_textBox.Location = new Point(29, 247);
-            userName_textBox.Multiline = true;
-            userName_textBox.Name = "userName_textBox";
-            userName_textBox.Size = new Size(259, 47);
-            userName_textBox.TabIndex = 6;
+            UserNameTextBox.Location = new Point(29, 247);
+            UserNameTextBox.Multiline = true;
+            UserNameTextBox.Name = "UserNameTextBox";
+            UserNameTextBox.Size = new Size(259, 47);
+            UserNameTextBox.TabIndex = 6;
             // 
             // label4
             // 
@@ -106,7 +106,6 @@
             label3.Size = new Size(84, 20);
             label3.TabIndex = 4;
             label3.Text = "User name";
-            label3.Click += label3_Click;
             // 
             // label2
             // 
@@ -117,7 +116,6 @@
             label2.Size = new Size(108, 28);
             label2.TabIndex = 3;
             label2.Text = "User login";
-            label2.Click += label2_Click;
             // 
             // label1
             // 
@@ -128,7 +126,6 @@
             label1.Size = new Size(241, 50);
             label1.TabIndex = 2;
             label1.Text = "Pos Machine";
-            label1.Click += label1_Click;
             // 
             // pictureBox1
             // 
@@ -162,7 +159,7 @@
         private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox userName_textBox;
-        private TextBox Password_textBox;
+        private TextBox UserNameTextBox;
+        private TextBox PasswordTextBox;
     }
 }
