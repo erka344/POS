@@ -5,7 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using PosLibrary;
+//using Microsoft.EntityFrameworkCore.Storage;
+using PosLibrary.serve;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
@@ -15,11 +16,19 @@ namespace PosForm
     {
 
         Datas data = new Datas();
+        DataBase Testdb;
+
         public MainScreen()
         {
-            InitializeComponent();
-            initialProductPanel();
-            testProductPanel();
+            
+            //InitializeComponent();
+            //initialProductPanel();
+            //testProductPanel();
+
+            //Testdb = new DataBase();       
+            
+
+
             //data.InitialData();
         }
         private void initialProductPanel()
