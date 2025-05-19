@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PosLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+539c773c86680a681ac044e717d456921ff84113")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8af2d40bddff61f49fadff73219346e9d2cf921")]
 [assembly: System.Reflection.AssemblyProductAttribute("PosLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PosLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

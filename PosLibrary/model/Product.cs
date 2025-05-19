@@ -13,6 +13,6 @@ namespace PosLibrary.model
         public int price { get; set; }
         public int CategoryId { get; set; }
         public int Discount { get; set; }
-        public int resource {  get; set; }
+        public int Quantity {  get; set; }
     }
 }
