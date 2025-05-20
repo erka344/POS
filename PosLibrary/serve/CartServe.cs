@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PosLibrary.serve
 {
-    class CartServe
+    public class CartServe
     {
         private IProductRepo productRepo;
         private List<Product> products;
@@ -19,6 +19,7 @@ namespace PosLibrary.serve
         public CartServe(string connectionString)
         {
             productRepo = new ProductRepo(connectionString);
+            products = new List<Product>();
         }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace PosLibrary.serve
         /// <param name="product"></param>
         public void AddProductToCart(Product product)
         {
-            Product existedItem = products.FirstOrDefault(p => p.BarCode == product.BarCode);
+            Product existedItem = products.FirstOrDefault(p => p.Id == product.Id);
 
             if (existedItem != null)
             {

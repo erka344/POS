@@ -21,7 +21,7 @@ namespace PosLibrary.repo
             using (var connect = new SqliteConnection(this.connectionString))
             {
                 connect.Open();
-                string Qry = "INSERT INTO Category (Name) VALUES(@name)";
+                string Qry = "INSERT INTO ProductCategories (Name) VALUES(@name)";
                 using (var com = new SqliteCommand(Qry,connect))
                 { 
                     com.Parameters.AddWithValue("@name", category.Name);
@@ -39,7 +39,7 @@ namespace PosLibrary.repo
             using (var connect = new SqliteConnection(this.connectionString))
             {
                 connect.Open();
-                string Qry = "UPDATE Category SET Id = @id, Name = @name WHERE Id = @id ";
+                string Qry = "UPDATE ProductCategories SET Id = @id, Name = @name WHERE Id = @id ";
                 using (var com = new SqliteCommand(Qry, connect))
                 {
                     com.Parameters.AddWithValue("@id", category.Id);
@@ -54,7 +54,7 @@ namespace PosLibrary.repo
             using (var connect = new SqliteConnection(this.connectionString))
             {
                 connect.Open();
-                string Qry = "DELETE FROM Category WHERE Id = @id";
+                string Qry = "DELETE FROM ProductCategories WHERE Id = @id";
                 using(var com = new SqliteCommand(Qry, connect))
                 {
                     com.Parameters.AddWithValue("@id", CategoryId);
@@ -68,17 +68,17 @@ namespace PosLibrary.repo
             using (var connect = new SqliteConnection(this.connectionString))
             {
                 connect.Open();
-                string Qry = "SELECT Id, Name FROM Category WHERE Id = @id";
+                string Qry = "SELECT Id, Name FROM ProductCategories";
                 using (var com = new SqliteCommand(Qry, connect))
                 {
                     using (var reader = com.ExecuteReader())
                     {
-                        if (reader.Read())
+                        while (reader.Read())
                         {
                             list.Add(new ProductCategory
                             {
-                                Id = (int)reader["Id"],
-                                Name = (string)reader["Name"],
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Name = reader["Name"]?.ToString()
                             });
                         }
                     }
@@ -92,7 +92,7 @@ namespace PosLibrary.repo
             using (var connect = new SqliteConnection(this.connectionString))
             {
                 connect.Open();
-                string Qry = "SELECT Name FROM Category WHERE Id = @id";
+                string Qry = "SELECT Name FROM ProductCategories WHERE Id = @id";
                 using (var com = new SqliteCommand(Qry, connect))
                 {
                     com.Parameters.AddWithValue("@id", id);

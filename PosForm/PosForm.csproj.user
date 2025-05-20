@@ -13,8 +13,14 @@
     <Compile Update="Payment.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="ProductUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Products.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RowProductUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
 </Project>

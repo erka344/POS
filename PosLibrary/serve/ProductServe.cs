@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PosLibrary.serve
 {
-    class ProductServe
+    public class ProductServe
     {
         private IProductRepo productRepo;
 
@@ -41,6 +41,11 @@ namespace PosLibrary.serve
         public List<Product> GetProductByCategory(int categoryId)
         {
             return productRepo.GetProductsByCategory(categoryId);
+        }
+
+        public List<Product> SearchProductByName(string name)
+        {
+            return productRepo.GetProductByName(name);
         }
     }
 }

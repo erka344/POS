@@ -70,3 +70,5 @@ C:\Users\erka\source\repos\Pos\PosForm\bin\Debug\net9.0-windows7.0\Images\chocol
 C:\Users\erka\source\repos\Pos\PosForm\bin\Debug\net9.0-windows7.0\Images\cocacola.jpg
 C:\Users\erka\source\repos\Pos\PosForm\bin\Debug\net9.0-windows7.0\Images\milk.jpg
 C:\Users\erka\source\repos\Pos\PosForm\bin\Debug\net9.0-windows7.0\Images\pepsi.jpg
+C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.ProductUC.resources
+C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.RowProductUC.resources

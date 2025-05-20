@@ -23,10 +23,12 @@ namespace PosLibrary.repo
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = @"INSERT INTO Products (Name, Price, CategoryId) VALUES (@name, @price, @categoryId)";
+                command.CommandText = @"INSERT INTO Products (Name, Price, CategoryId, ImageName) VALUES (@name, @price, @categoryId, @imageName)";
                 command.Parameters.AddWithValue("@name", product.Name);
                 command.Parameters.AddWithValue("@price", product.price);
                 command.Parameters.AddWithValue("@categoryId", product.CategoryId);
+                command.Parameters.AddWithValue("@imageName", product.ImagePath);
+
                 command.ExecuteNonQuery();
             }
         }
@@ -37,12 +39,13 @@ namespace PosLibrary.repo
                 connection.Open();
                 var command = connection.CreateCommand();
                 command.CommandText = @"UPDATE Products
-                                    SET Name = @name, Price = @price, CategoryId = @categoryId
+                                    SET Name = @name, Price = @price, CategoryId = @categoryId, ImageName = @imageName
                                     WHERE Id = @id";
                 command.Parameters.AddWithValue("@name", product.Name);
                 command.Parameters.AddWithValue("@price", product.price);
                 command.Parameters.AddWithValue("@categoryId", product.CategoryId);
-                command.Parameters.AddWithValue("@id", product.BarCode);
+                command.Parameters.AddWithValue("@imageName", product.ImagePath);
+                command.Parameters.AddWithValue("@id", product.Id);
                 command.ExecuteNonQuery();
             }
         }
@@ -53,7 +56,7 @@ namespace PosLibrary.repo
                 connection.Open();
                 var command = connection.CreateCommand();
                 command.CommandText = @"DELETE FROM Products WHERE Id = @id";
-                command.Parameters.AddWithValue("@id", product.BarCode);
+                command.Parameters.AddWithValue("@id", product.Id);
                 command.ExecuteNonQuery();
             }
         }
@@ -64,17 +67,18 @@ namespace PosLibrary.repo
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT Id, Name, Price, CategoryId FROM Products";
+                command.CommandText = "SELECT Id, Name, Price, CategoryId, ImageName FROM Products";
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         products.Add(new Product
                         {
-                            BarCode = (int)reader["Id"],
+                            Id = Convert.ToInt32(reader["Id"]),
                             Name = reader["Name"].ToString(),
-                            price = (int)reader["Price"],
-                            CategoryId = (int)reader["CategoryId"],
+                            price = (int)Convert.ToDecimal(reader["Price"]),
+                            CategoryId = Convert.ToInt32(reader["CategoryId"]),
+                            ImagePath = reader["ImageName"].ToString()
                         });
                     }
                 }
@@ -88,7 +92,7 @@ namespace PosLibrary.repo
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = @"SELECT Id, Name, Price, CategoryId
+                command.CommandText = @"SELECT Id, Name, Price, CategoryId, ImageName
                                     FROM Products
                                     WHERE CategoryId = @categoryId";
                 command.Parameters.AddWithValue("@categoryId", categoryId);
@@ -98,15 +102,47 @@ namespace PosLibrary.repo
                     {
                         products.Add(new Product
                         {
-                            BarCode = (int)reader["Id"],
-                            Name = reader["Name"].ToString(),
-                            price = (int)reader["Price"],
-                            CategoryId = (int)reader["CategoryId"]
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Name = reader["Name"]?.ToString(),
+                            price = Convert.ToInt32(reader["Price"]),
+                            CategoryId = Convert.ToInt32(reader["CategoryId"]),
+                            ImagePath = reader["ImageName"]?.ToString()
                         });
                     }
                 }
             }
             return products;
         }
+
+        public List<Product> GetProductByName(string name)
+        { 
+            var products = new List<Product>();
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open();
+                string Qry = "SELECT Id, Name, Price, CategoryId, ImageName FROM Products WHERE Name LIKE @name";
+
+                using(var com  = new SqliteCommand(Qry, connection))
+                {
+                    com.Parameters.AddWithValue("@name", $"%{name}%");
+                    using (var reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new Product
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Name = reader["Name"]?.ToString(),
+                                price = Convert.ToInt32(reader["Price"]),
+                                CategoryId = Convert.ToInt32(reader["CategoryId"]),
+                                ImagePath = reader["ImageName"]?.ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
     }
 }

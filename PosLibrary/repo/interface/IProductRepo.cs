@@ -14,5 +14,6 @@ namespace PosLibrary.repo.@interface
         public void DeleteProduct(Product product);
         public List<Product> GetProducts();
         public List<Product> GetProductsByCategory(int CategoryId);
+        public List<Product> GetProductByName(string Name);
     }
 }

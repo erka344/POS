@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PosLibrary.serve
 {
-    class ProductCategoryServe
+    public class ProductCategoryServe
     {
         private IProductCategoryRepo categoryRepo;
 

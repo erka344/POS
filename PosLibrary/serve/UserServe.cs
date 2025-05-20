@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PosLibrary.serve
 {
-    class UserServe
+    public class UserServe
     {
         private readonly IUserRepo userRepo;
 
