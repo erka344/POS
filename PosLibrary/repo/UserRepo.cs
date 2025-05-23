@@ -10,7 +10,7 @@ using PosLibrary.repo.@interface;
 
 namespace PosLibrary.repo
 {
-    class UserRepo : IUserRepo
+    public class UserRepo : IUserRepo
     {
         private readonly string connectionString;
         public UserRepo(string connectionString)

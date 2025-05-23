@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PosLibrary.repo
 {
-    class ProductCategoryRepo : IProductCategoryRepo
+    public class ProductCategoryRepo : IProductCategoryRepo
     {
         private readonly string  connectionString;
         public ProductCategoryRepo(string connectString)
@@ -87,6 +87,33 @@ namespace PosLibrary.repo
             }
             return list;
         }
+        public List<ProductCategory> GetCategoryByName(string name)
+        {
+            var list = new List<ProductCategory>();
+            using (var connect = new SqliteConnection(this.connectionString))
+            {
+                connect.Open();
+                string Qry = "SELECT Id, Name FROM ProductCategories WHERE Name LIKE @name";
+                using (var com = new SqliteCommand(Qry, connect))
+                {
+                    com.Parameters.AddWithValue("@name", $"%{name}%");
+                    using (var reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            list.Add(new ProductCategory
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                Name = reader["Name"]?.ToString()
+                            });
+                        }
+                    }
+
+                }
+            }
+            return list;
+        }
+
         public string GetCategoryById(int id)
         {
             using (var connect = new SqliteConnection(this.connectionString))

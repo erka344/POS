@@ -18,17 +18,19 @@ namespace PosForm
         private ProductServe productServe;
         private CartServe cartServe;
         private ProductCategoryServe productCategoryServe;
+        private User currentUser;
 
         public string DbPath = "\"C:\\Users\\erka\\source\\repos\\Pos\\PosForm\\PosDatabase.db\"";
 
 
         DataBase Testdb;
-        
 
-        public MainScreen()
+
+        public MainScreen(User user)
         {
 
             InitializeComponent();
+            currentUser = user;
             ConnectionString = $"Data Source={DbPath};";
             productServe = new ProductServe(ConnectionString);
             cartServe = new CartServe(ConnectionString);
@@ -63,7 +65,7 @@ namespace PosForm
 
         private void ReloadCartPanel()
         {
-            ProductFlowPanel.Controls.Clear(); 
+            ProductFlowPanel.Controls.Clear();
 
             foreach (var product in cartServe.Products)
             {
@@ -88,7 +90,7 @@ namespace PosForm
         }
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
             string keyword = SearchTextBox.Text;
             var filteredProducts = productServe.SearchProductByName(keyword);
 
@@ -112,9 +114,9 @@ namespace PosForm
                     ForeColor = Color.Blue,
                 };
                 categoriesPanel.Controls.Add(categoryBtn);
-                categoryBtn.Click += (s, e) => LoadingProductsInCategoriesPanel(category.Id) ;
+                categoryBtn.Click += (s, e) => LoadingProductsInCategoriesPanel(category.Id);
             }
-            
+
             categoriesPanel.FlowDirection = FlowDirection.TopDown;
             categoriesPanel.WrapContents = true;
             categoriesPanel.AutoScroll = true;
@@ -141,12 +143,6 @@ namespace PosForm
         }
 
 
-        private void categoriesPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
         private void MainScreen_Load(object sender, EventArgs e)
         {
             //testProductPanel();
@@ -160,11 +156,21 @@ namespace PosForm
             payment.ShowDialog();
         }
 
-      
-
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form products = new Products(currentUser);
+            products.ShowDialog();
+        }
+
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form category = new Categories(currentUser);
+            category.ShowDialog();
         }
     }
 }

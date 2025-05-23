@@ -29,16 +29,9 @@
         private void InitializeComponent()
         {
             label7 = new Label();
-            productImageText = new TextBox();
-            button1 = new Button();
+            SaveBtn = new Button();
             addBtn = new Button();
             productsFlowPanel = new FlowLayoutPanel();
-            panel1 = new Panel();
-            label6 = new Label();
-            pictureBox1 = new PictureBox();
-            deleteBtn = new Button();
-            editBtn = new Button();
-            searchBtn = new Button();
             label5 = new Label();
             productCategoreName = new TextBox();
             label4 = new Label();
@@ -46,39 +39,33 @@
             label3 = new Label();
             productPriceText = new TextBox();
             label2 = new Label();
-            produtCodeText = new TextBox();
+            ProductIdText = new TextBox();
             label1 = new Label();
             productNameText = new TextBox();
-            searchText = new TextBox();
-            productsFlowPanel.SuspendLayout();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            searchTextBox = new TextBox();
+            pictureBox2 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(615, 205);
+            label7.Location = new Point(615, 112);
             label7.Name = "label7";
             label7.Size = new Size(51, 20);
             label7.TabIndex = 34;
             label7.Text = "Image";
             // 
-            // productImageText
+            // SaveBtn
             // 
-            productImageText.Location = new Point(615, 228);
-            productImageText.Name = "productImageText";
-            productImageText.Size = new Size(184, 27);
-            productImageText.TabIndex = 33;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(615, 12);
-            button1.Name = "button1";
-            button1.Size = new Size(184, 29);
-            button1.TabIndex = 32;
-            button1.Text = "save";
-            button1.UseVisualStyleBackColor = true;
+            SaveBtn.Enabled = false;
+            SaveBtn.Location = new Point(615, 12);
+            SaveBtn.Name = "SaveBtn";
+            SaveBtn.Size = new Size(184, 29);
+            SaveBtn.TabIndex = 32;
+            SaveBtn.Text = "save";
+            SaveBtn.UseVisualStyleBackColor = true;
+            SaveBtn.Click += SaveBtn_Click;
             // 
             // addBtn
             // 
@@ -88,74 +75,21 @@
             addBtn.TabIndex = 31;
             addBtn.Text = "add product";
             addBtn.UseVisualStyleBackColor = true;
+            addBtn.Click += addBtn_Click;
             // 
             // productsFlowPanel
             // 
-            productsFlowPanel.Controls.Add(panel1);
+            productsFlowPanel.AutoScroll = true;
             productsFlowPanel.Location = new Point(12, 45);
             productsFlowPanel.Name = "productsFlowPanel";
-            productsFlowPanel.Size = new Size(369, 215);
+            productsFlowPanel.Size = new Size(369, 229);
             productsFlowPanel.TabIndex = 30;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(pictureBox1);
-            panel1.Controls.Add(deleteBtn);
-            panel1.Controls.Add(editBtn);
-            panel1.Location = new Point(3, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(148, 198);
-            panel1.TabIndex = 0;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(24, 133);
-            label6.Name = "label6";
-            label6.Size = new Size(101, 20);
-            label6.TabIndex = 15;
-            label6.Text = "Product name";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(3, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(142, 116);
-            pictureBox1.TabIndex = 15;
-            pictureBox1.TabStop = false;
-            // 
-            // deleteBtn
-            // 
-            deleteBtn.Location = new Point(85, 171);
-            deleteBtn.Name = "deleteBtn";
-            deleteBtn.Size = new Size(60, 24);
-            deleteBtn.TabIndex = 16;
-            deleteBtn.Text = "delete";
-            deleteBtn.UseVisualStyleBackColor = true;
-            // 
-            // editBtn
-            // 
-            editBtn.Location = new Point(3, 171);
-            editBtn.Name = "editBtn";
-            editBtn.Size = new Size(66, 24);
-            editBtn.TabIndex = 15;
-            editBtn.Text = "edit";
-            editBtn.UseVisualStyleBackColor = true;
-            // 
-            // searchBtn
-            // 
-            searchBtn.Location = new Point(287, 12);
-            searchBtn.Name = "searchBtn";
-            searchBtn.Size = new Size(94, 29);
-            searchBtn.TabIndex = 29;
-            searchBtn.Text = "search";
-            searchBtn.UseVisualStyleBackColor = true;
+            productsFlowPanel.WrapContents = false;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(408, 205);
+            label5.Location = new Point(408, 211);
             label5.Name = "label5";
             label5.Size = new Size(111, 20);
             label5.TabIndex = 28;
@@ -163,7 +97,7 @@
             // 
             // productCategoreName
             // 
-            productCategoreName.Location = new Point(408, 228);
+            productCategoreName.Location = new Point(408, 234);
             productCategoreName.Name = "productCategoreName";
             productCategoreName.Size = new Size(184, 27);
             productCategoreName.TabIndex = 27;
@@ -171,7 +105,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(615, 126);
+            label4.Location = new Point(615, 50);
             label4.Name = "label4";
             label4.Size = new Size(67, 20);
             label4.TabIndex = 26;
@@ -179,7 +113,7 @@
             // 
             // productDiscountText
             // 
-            productDiscountText.Location = new Point(615, 149);
+            productDiscountText.Location = new Point(615, 73);
             productDiscountText.Name = "productDiscountText";
             productDiscountText.Size = new Size(184, 27);
             productDiscountText.TabIndex = 25;
@@ -187,7 +121,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(408, 126);
+            label3.Location = new Point(408, 156);
             label3.Name = "label3";
             label3.Size = new Size(41, 20);
             label3.TabIndex = 24;
@@ -195,7 +129,7 @@
             // 
             // productPriceText
             // 
-            productPriceText.Location = new Point(408, 149);
+            productPriceText.Location = new Point(408, 179);
             productPriceText.Name = "productPriceText";
             productPriceText.Size = new Size(184, 27);
             productPriceText.TabIndex = 23;
@@ -203,23 +137,24 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(615, 56);
+            label2.Location = new Point(408, 50);
             label2.Name = "label2";
-            label2.Size = new Size(68, 20);
+            label2.Size = new Size(95, 20);
             label2.TabIndex = 22;
-            label2.Text = "Bar code";
+            label2.Text = "Bar code (id)";
             // 
-            // produtCodeText
+            // ProductIdText
             // 
-            produtCodeText.Location = new Point(615, 79);
-            produtCodeText.Name = "produtCodeText";
-            produtCodeText.Size = new Size(184, 27);
-            produtCodeText.TabIndex = 21;
+            ProductIdText.Location = new Point(408, 73);
+            ProductIdText.Name = "ProductIdText";
+            ProductIdText.ReadOnly = true;
+            ProductIdText.Size = new Size(184, 27);
+            ProductIdText.TabIndex = 21;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(408, 56);
+            label1.Location = new Point(408, 103);
             label1.Name = "label1";
             label1.Size = new Size(49, 20);
             label1.TabIndex = 20;
@@ -227,30 +162,40 @@
             // 
             // productNameText
             // 
-            productNameText.Location = new Point(408, 79);
+            productNameText.Location = new Point(408, 126);
             productNameText.Name = "productNameText";
             productNameText.Size = new Size(184, 27);
             productNameText.TabIndex = 19;
             // 
-            // searchText
+            // searchTextBox
             // 
-            searchText.Location = new Point(12, 12);
-            searchText.Name = "searchText";
-            searchText.Size = new Size(269, 27);
-            searchText.TabIndex = 18;
-            searchText.Text = "search product";
+            searchTextBox.Location = new Point(12, 12);
+            searchTextBox.Name = "searchTextBox";
+            searchTextBox.Size = new Size(369, 27);
+            searchTextBox.TabIndex = 18;
+            searchTextBox.TextChanged += SearchProduct_TextChanged;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackColor = SystemColors.ButtonHighlight;
+            pictureBox2.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox2.Location = new Point(615, 135);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(184, 126);
+            pictureBox2.TabIndex = 35;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // Products
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 291);
+            ClientSize = new Size(821, 286);
+            Controls.Add(pictureBox2);
             Controls.Add(label7);
-            Controls.Add(productImageText);
-            Controls.Add(button1);
+            Controls.Add(SaveBtn);
             Controls.Add(addBtn);
             Controls.Add(productsFlowPanel);
-            Controls.Add(searchBtn);
             Controls.Add(label5);
             Controls.Add(productCategoreName);
             Controls.Add(label4);
@@ -258,16 +203,13 @@
             Controls.Add(label3);
             Controls.Add(productPriceText);
             Controls.Add(label2);
-            Controls.Add(produtCodeText);
+            Controls.Add(ProductIdText);
             Controls.Add(label1);
             Controls.Add(productNameText);
-            Controls.Add(searchText);
+            Controls.Add(searchTextBox);
             Name = "Products";
             Text = "Products";
-            productsFlowPanel.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -275,16 +217,9 @@
         #endregion
 
         private Label label7;
-        private TextBox productImageText;
-        private Button button1;
+        private Button SaveBtn;
         private Button addBtn;
         private FlowLayoutPanel productsFlowPanel;
-        private Panel panel1;
-        private Label label6;
-        private PictureBox pictureBox1;
-        private Button deleteBtn;
-        private Button editBtn;
-        private Button searchBtn;
         private Label label5;
         private TextBox productCategoreName;
         private Label label4;
@@ -292,9 +227,10 @@
         private Label label3;
         private TextBox productPriceText;
         private Label label2;
-        private TextBox produtCodeText;
+        private TextBox ProductIdText;
         private Label label1;
         private TextBox productNameText;
-        private TextBox searchText;
+        private TextBox searchTextBox;
+        private PictureBox pictureBox2;
     }
 }

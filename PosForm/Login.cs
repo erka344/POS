@@ -1,4 +1,6 @@
-﻿using PosLibrary.serve;
+﻿using PosLibrary.repo.@interface;
+using PosLibrary.repo;
+using PosLibrary.serve;
 
 namespace PosForm
 {
@@ -9,7 +11,8 @@ namespace PosForm
         public Form1()
         {
             InitializeComponent();
-            userServe = new UserServe(ConnectionString);
+            IUserRepo repo = new UserRepo(ConnectionString);
+            userServe = new UserServe(repo);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,7 +29,7 @@ namespace PosForm
                 // Нэвтрэлт амжилттай бол login form-ыг нууж, гол дэлгэц гаргана
                 this.Hide();
 
-                MainScreen mainScreen = new MainScreen();
+                MainScreen mainScreen = new MainScreen(ValidUser);
                 mainScreen.ShowDialog();
 
                 // Гол дэлгэц хаагдсан дараа login form-ыг хаах

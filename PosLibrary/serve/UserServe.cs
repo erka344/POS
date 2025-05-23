@@ -13,10 +13,7 @@ namespace PosLibrary.serve
     {
         private readonly IUserRepo userRepo;
 
-        public UserServe(string connectionString) 
-        { 
-            userRepo = new UserRepo(connectionString); 
-        }
+        public UserServe(IUserRepo repo) { this.userRepo = repo; }
 
         public User GetUserById(int id)
         {
@@ -40,8 +37,10 @@ namespace PosLibrary.serve
 
         public User Authentication(string username, string password)
         {
-            User user = userRepo.GetUserByName(username);
-            if (user == null && user.Password == password)
+            var user = userRepo.GetUserByName(username);
+
+
+            if (user != null && user.Password == password)
             {
                 return user;
             }

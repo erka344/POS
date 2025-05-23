@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PosLibrary.repo
 {
-    class ProductRepo :IProductRepo
+    public class ProductRepo :IProductRepo
     {
         private readonly string connectionString;
         public ProductRepo(string connectString)
@@ -51,13 +51,19 @@ namespace PosLibrary.repo
         }
         public void DeleteProduct(Product product)
         {
+            if (product == null)
+                throw new ArgumentNullException(nameof(product), "Устгах бүтээгдэхүүн null байна.");
+
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText = @"DELETE FROM Products WHERE Id = @id";
-                command.Parameters.AddWithValue("@id", product.Id);
-                command.ExecuteNonQuery();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "DELETE FROM Products WHERE Id = @id";
+                    command.Parameters.AddWithValue("@id", product.Id);
+                    command.ExecuteNonQuery();
+                }
             }
         }
         public List<Product> GetProducts()

@@ -37,6 +37,15 @@ namespace PosLibrary.serve
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<ProductCategory> GetCategoryByName(string name)
+        {
+            return categoryRepo.GetCategoryByName(name);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="category"></param>
         public void AddProductCategory(ProductCategory category)
         {

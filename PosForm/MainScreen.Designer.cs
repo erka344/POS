@@ -36,7 +36,6 @@
             label1 = new Label();
             categoriesPanel = new FlowLayoutPanel();
             menuStrip1 = new MenuStrip();
-            profileToolStripMenuItem = new ToolStripMenuItem();
             productsToolStripMenuItem = new ToolStripMenuItem();
             categoriesToolStripMenuItem = new ToolStripMenuItem();
             productsPanel = new FlowLayoutPanel();
@@ -125,30 +124,26 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { profileToolStripMenuItem, productsToolStripMenuItem, categoriesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { productsToolStripMenuItem, categoriesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1159, 28);
             menuStrip1.TabIndex = 20;
             menuStrip1.Text = "menuStrip1";
             // 
-            // profileToolStripMenuItem
-            // 
-            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            profileToolStripMenuItem.Size = new Size(66, 24);
-            profileToolStripMenuItem.Text = "Profile";
-            // 
             // productsToolStripMenuItem
             // 
             productsToolStripMenuItem.Name = "productsToolStripMenuItem";
             productsToolStripMenuItem.Size = new Size(80, 24);
             productsToolStripMenuItem.Text = "Products";
+            productsToolStripMenuItem.Click += productsToolStripMenuItem_Click;
             // 
             // categoriesToolStripMenuItem
             // 
             categoriesToolStripMenuItem.Name = "categoriesToolStripMenuItem";
             categoriesToolStripMenuItem.Size = new Size(94, 24);
             categoriesToolStripMenuItem.Text = "Categories";
+            categoriesToolStripMenuItem.Click += categoriesToolStripMenuItem_Click;
             // 
             // productsPanel
             // 
@@ -276,7 +271,6 @@
         private Label label1;
         private FlowLayoutPanel categoriesPanel;
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem profileToolStripMenuItem;
         private ToolStripMenuItem productsToolStripMenuItem;
         private ToolStripMenuItem categoriesToolStripMenuItem;
         private FlowLayoutPanel productsPanel;
