@@ -172,5 +172,11 @@ namespace PosForm
             Form category = new Categories(currentUser);
             category.ShowDialog();
         }
+
+        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form profile = new Profile(currentUser);
+            profile.ShowDialog();
+        }
     }
 }

@@ -33,7 +33,6 @@
             addBtn = new Button();
             productsFlowPanel = new FlowLayoutPanel();
             label5 = new Label();
-            productCategoreName = new TextBox();
             label4 = new Label();
             productDiscountText = new TextBox();
             label3 = new Label();
@@ -44,6 +43,7 @@
             productNameText = new TextBox();
             searchTextBox = new TextBox();
             pictureBox2 = new PictureBox();
+            categoryCombo = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
@@ -94,13 +94,6 @@
             label5.Size = new Size(111, 20);
             label5.TabIndex = 28;
             label5.Text = "Categore name";
-            // 
-            // productCategoreName
-            // 
-            productCategoreName.Location = new Point(408, 234);
-            productCategoreName.Name = "productCategoreName";
-            productCategoreName.Size = new Size(184, 27);
-            productCategoreName.TabIndex = 27;
             // 
             // label4
             // 
@@ -186,18 +179,26 @@
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
             // 
+            // categoryCombo
+            // 
+            categoryCombo.FormattingEnabled = true;
+            categoryCombo.Location = new Point(408, 234);
+            categoryCombo.Name = "categoryCombo";
+            categoryCombo.Size = new Size(184, 28);
+            categoryCombo.TabIndex = 36;
+            // 
             // Products
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(821, 286);
+            ClientSize = new Size(821, 352);
+            Controls.Add(categoryCombo);
             Controls.Add(pictureBox2);
             Controls.Add(label7);
             Controls.Add(SaveBtn);
             Controls.Add(addBtn);
             Controls.Add(productsFlowPanel);
             Controls.Add(label5);
-            Controls.Add(productCategoreName);
             Controls.Add(label4);
             Controls.Add(productDiscountText);
             Controls.Add(label3);
@@ -221,7 +222,6 @@
         private Button addBtn;
         private FlowLayoutPanel productsFlowPanel;
         private Label label5;
-        private TextBox productCategoreName;
         private Label label4;
         private TextBox productDiscountText;
         private Label label3;
@@ -232,5 +232,6 @@
         private TextBox productNameText;
         private TextBox searchTextBox;
         private PictureBox pictureBox2;
+        private ComboBox categoryCombo;
     }
 }

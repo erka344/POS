@@ -75,3 +75,4 @@ C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.RowPr
 C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.ProductDetailUC.resources
 C:\Users\erka\source\repos\Pos\PosForm\bin\Debug\net9.0-windows7.0\Images\default.jpg
 C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.CategoryDetailUC.resources
+C:\Users\erka\source\repos\Pos\PosForm\obj\Debug\net9.0-windows7.0\PosForm.Profile.resources

@@ -81,21 +81,25 @@ namespace PosForm
         }
         private void ProductCategoryDetailUC_deleteBtnClicked(ProductCategory category)
         {
-            DialogResult result = MessageBox.Show(
-                "Та устгахдаа итгэлтэй байна уу?",
-                "Баталгаажуулалт",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-            if (currentUser.Role != 0)
+            
+            if (currentUser.Role == 0)
             {
-                
-            } else {
+                DialogResult result = MessageBox.Show(
+                    "Та устгахдаа итгэлтэй байна уу?",
+                    "Баталгаажуулалт",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
                 if (result == DialogResult.Yes)
                 {
                     productCategoryServe.DeleteProductCategory(category.Id);
                     MessageBox.Show("Амжилттай устгалаа!", "Мэдээлэл", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadingCategories();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Amjiltgui bolloo!", "Мэдээлэл", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void SaveBtn_Click(object sender, EventArgs e)

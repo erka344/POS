@@ -48,6 +48,7 @@
             label3 = new Label();
             label2 = new Label();
             label7 = new Label();
+            profileToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -124,7 +125,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { productsToolStripMenuItem, categoriesToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { profileToolStripMenuItem, productsToolStripMenuItem, categoriesToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1159, 28);
@@ -233,6 +234,13 @@
             label7.TabIndex = 24;
             label7.Text = "Search here";
             // 
+            // profileToolStripMenuItem
+            // 
+            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            profileToolStripMenuItem.Size = new Size(66, 24);
+            profileToolStripMenuItem.Text = "Profile";
+            profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
+            // 
             // MainScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -283,5 +291,6 @@
         private Label label3;
         private Label label2;
         private Label label7;
+        private ToolStripMenuItem profileToolStripMenuItem;
     }
 }

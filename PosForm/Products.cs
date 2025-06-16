@@ -15,17 +15,21 @@ namespace PosForm
     public partial class Products : Form
     {
         ProductServe productServe;
+        ProductCategoryServe productCategoryServe;
         Product UsedProduct;
         User currentUser;
+        List<ProductCategory> categories;
         public Products(User user)
         {
             InitializeComponent();
             currentUser = user;
             string connectionString = $"Data Source=\"C:\\Users\\erka\\source\\repos\\Pos\\PosForm\\PosDatabase.db\";";
             productServe = new ProductServe(connectionString);
+            productCategoryServe = new ProductCategoryServe(connectionString);
             LoadingProducts();
             UsedProduct = new Product();
             LoadingUserRole();
+            LoadingCategories();
         }
 
         private void LoadingProducts()
@@ -49,6 +53,16 @@ namespace PosForm
                 SaveBtn.Enabled = false;
             }
         }
+
+        private void LoadingCategories()
+        {
+            categories = productCategoryServe.GetAllProductCategory();
+            categoryCombo.DataSource = categories;
+            categoryCombo.DisplayMember = "Name"; // харуулах талбар
+            categoryCombo.ValueMember = "Id"; // утга авах талбар
+            categoryCombo.SelectedIndex = -1; // эхэнд нь сонголтгүй болгоно
+
+        }
         private void SearchProduct_TextChanged(object sender, EventArgs e)
         {
             string searchText = searchTextBox.Text;
@@ -68,7 +82,7 @@ namespace PosForm
             productNameText.Text = product.Name;
             productPriceText.Text = product.price.ToString();
             productDiscountText.Text = product.Discount.ToString();
-            productCategoreName.Text = product.CategoryId.ToString();
+            categoryCombo.SelectedValue = product.CategoryId;
 
             string imageDir = Path.Combine(Application.StartupPath, "Images");
             string imageName = string.IsNullOrEmpty(product.ImagePath) ? "default.jpg" : product.ImagePath;
@@ -102,19 +116,24 @@ namespace PosForm
 
         private void ProductDetailUC_deleteBtnClicked(Product product)
         {
-            DialogResult result = MessageBox.Show(
-                "Та устгахдаа итгэлтэй байна уу?",
-                "Баталгаажуулалт",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-            if (currentUser.Role != 0) { }
-            else {
+            
+            if (currentUser.Role == 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Та устгахдаа итгэлтэй байна уу?",
+                    "Баталгаажуулалт",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
                 if (result == DialogResult.Yes)
                 {
                     productServe.DeleteProduct(product);
+                    MessageBox.Show("Амжилттай устгалаа!", "Мэдээлэл", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadingProducts();
                 }      
+            } else
+            {
+                MessageBox.Show("Amjiltgui bolloo!", "Мэдээлэл", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -145,7 +164,7 @@ namespace PosForm
             productNameText.Text = "";
             productPriceText.Text = "";
             productDiscountText.Text = "";
-            productCategoreName.Text = "";
+            categoryCombo.Text = "";
             
 
             SaveBtn.Enabled = true;
@@ -160,7 +179,7 @@ namespace PosForm
             UsedProduct.Id = currentID;
             UsedProduct.price = int.Parse(productPriceText.Text);
             UsedProduct.Name = productNameText.Text;
-            UsedProduct.CategoryId = int.Parse(productCategoreName.Text);
+            UsedProduct.CategoryId = (int)categoryCombo.SelectedValue;
             UsedProduct.Discount = int.Parse(productDiscountText.Text);
 
             if (pictureBox2.Image != null)
