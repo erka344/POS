@@ -43,6 +43,7 @@
             textBox4 = new TextBox();
             label4 = new Label();
             roleCombo = new ComboBox();
+            listView1 = new ListView();
             SuspendLayout();
             // 
             // username
@@ -153,7 +154,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(474, 25);
+            textBox4.Location = new Point(496, 25);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(186, 27);
             textBox4.TabIndex = 12;
@@ -161,7 +162,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(474, 2);
+            label4.Location = new Point(496, 2);
             label4.Name = "label4";
             label4.Size = new Size(53, 20);
             label4.TabIndex = 13;
@@ -176,11 +177,20 @@
             roleCombo.Size = new Size(144, 28);
             roleCombo.TabIndex = 14;
             // 
+            // listView1
+            // 
+            listView1.Location = new Point(496, 58);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(186, 160);
+            listView1.TabIndex = 15;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // Profile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(741, 491);
+            ClientSize = new Size(741, 234);
+            Controls.Add(listView1);
             Controls.Add(roleCombo);
             Controls.Add(label4);
             Controls.Add(textBox4);
@@ -219,5 +229,6 @@
         private TextBox textBox4;
         private Label label4;
         private ComboBox roleCombo;
+        private ListView listView1;
     }
 }

@@ -174,7 +174,7 @@
             pictureBox2.BorderStyle = BorderStyle.FixedSingle;
             pictureBox2.Location = new Point(615, 135);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(184, 126);
+            pictureBox2.Size = new Size(184, 127);
             pictureBox2.TabIndex = 35;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
