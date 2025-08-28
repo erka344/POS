@@ -30,12 +30,12 @@
         {
             SearchTextBox = new TextBox();
             ExitButton = new Button();
-            PrintButton = new Button();
             PayButton = new Button();
             TotalPriceLabel = new Label();
             label1 = new Label();
             categoriesPanel = new FlowLayoutPanel();
             menuStrip1 = new MenuStrip();
+            profileToolStripMenuItem = new ToolStripMenuItem();
             productsToolStripMenuItem = new ToolStripMenuItem();
             categoriesToolStripMenuItem = new ToolStripMenuItem();
             productsPanel = new FlowLayoutPanel();
@@ -48,7 +48,7 @@
             label3 = new Label();
             label2 = new Label();
             label7 = new Label();
-            profileToolStripMenuItem = new ToolStripMenuItem();
+            button1 = new Button();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -72,16 +72,6 @@
             ExitButton.Text = "Exit";
             ExitButton.UseVisualStyleBackColor = true;
             ExitButton.Click += ExitButton_Click;
-            // 
-            // PrintButton
-            // 
-            PrintButton.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            PrintButton.Location = new Point(235, 627);
-            PrintButton.Name = "PrintButton";
-            PrintButton.Size = new Size(129, 60);
-            PrintButton.TabIndex = 16;
-            PrintButton.Text = "Print";
-            PrintButton.UseVisualStyleBackColor = true;
             // 
             // PayButton
             // 
@@ -131,6 +121,13 @@
             menuStrip1.Size = new Size(1159, 28);
             menuStrip1.TabIndex = 20;
             menuStrip1.Text = "menuStrip1";
+            // 
+            // profileToolStripMenuItem
+            // 
+            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            profileToolStripMenuItem.Size = new Size(66, 24);
+            profileToolStripMenuItem.Text = "Profile";
+            profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
             // 
             // productsToolStripMenuItem
             // 
@@ -234,25 +231,28 @@
             label7.TabIndex = 24;
             label7.Text = "Search here";
             // 
-            // profileToolStripMenuItem
+            // button1
             // 
-            profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            profileToolStripMenuItem.Size = new Size(66, 24);
-            profileToolStripMenuItem.Text = "Profile";
-            profileToolStripMenuItem.Click += profileToolStripMenuItem_Click;
+            button1.Location = new Point(483, 496);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 0;
+            button1.Text = "clear";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += clear_Click;
             // 
             // MainScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1159, 720);
+            Controls.Add(button1);
             Controls.Add(label7);
             Controls.Add(panel1);
             Controls.Add(ProductFlowPanel);
             Controls.Add(productsPanel);
             Controls.Add(SearchTextBox);
             Controls.Add(ExitButton);
-            Controls.Add(PrintButton);
             Controls.Add(PayButton);
             Controls.Add(TotalPriceLabel);
             Controls.Add(label1);
@@ -273,7 +273,6 @@
         #endregion
         private TextBox SearchTextBox;
         private Button ExitButton;
-        private Button PrintButton;
         private Button PayButton;
         private Label TotalPriceLabel;
         private Label label1;
@@ -292,5 +291,6 @@
         private Label label2;
         private Label label7;
         private ToolStripMenuItem profileToolStripMenuItem;
+        private Button button1;
     }
 }

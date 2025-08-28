@@ -11,7 +11,8 @@
           "Microsoft.Data.Sqlite": "7.0.13",
           "Microsoft.EntityFrameworkCore": "9.0.5",
           "PosLibrary": "1.0.0",
-          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.8"
+          "SQLitePCLRaw.bundle_e_sqlite3": "2.1.8",
+          "System.Drawing.Common": "9.0.8"
         },
         "runtime": {
           "PosForm.dll": {}
@@ -143,6 +144,22 @@
           "lib/net9.0/Microsoft.Extensions.Primitives.dll": {
             "assemblyVersion": "9.0.0.0",
             "fileVersion": "9.0.525.21509"
+          }
+        }
+      },
+      "Microsoft.Win32.SystemEvents/9.0.8": {
+        "runtime": {
+          "lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.825.36511"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.825.36511"
           }
         }
       },
@@ -324,6 +341,21 @@
           "Stub.System.Data.SQLite.Core.NetStandard": "1.0.119"
         }
       },
+      "System.Drawing.Common/9.0.8": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "9.0.8"
+        },
+        "runtime": {
+          "lib/net9.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.825.36801"
+          },
+          "lib/net9.0/System.Private.Windows.Core.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.825.36801"
+          }
+        }
+      },
       "System.Memory/4.5.3": {},
       "PosLibrary/1.0.0": {
         "dependencies": {
@@ -436,6 +468,13 @@
       "path": "microsoft.extensions.primitives/9.0.5",
       "hashPath": "microsoft.extensions.primitives.9.0.5.nupkg.sha512"
     },
+    "Microsoft.Win32.SystemEvents/9.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-64oQBN8I8EOcyHGNt6+rlcqm4tlcKfqOpswtBCJZnpzBQ15L6IFKqjnbjbOWBpG9wKq9A/aC2LFSmSqplbwTYA==",
+      "path": "microsoft.win32.systemevents/9.0.8",
+      "hashPath": "microsoft.win32.systemevents.9.0.8.nupkg.sha512"
+    },
     "SQLitePCLRaw.bundle_e_sqlite3/2.1.8": {
       "type": "package",
       "serviceable": true,
@@ -477,6 +516,13 @@
       "sha512": "sha512-bhQB8HVtRA+OOYw8UTD1F1kU+nGJ0/OZvH1JmlVUI4bGvgVEWeX1NcHjA765NvUoRVuCPlt8PrEpZ1thSsk1jg==",
       "path": "system.data.sqlite.core/1.0.119",
       "hashPath": "system.data.sqlite.core.1.0.119.nupkg.sha512"
+    },
+    "System.Drawing.Common/9.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ineIJmF+yuBEHGft9R153J9kmBFaeEfFL5Put5nzENneRcGGPUb3MvM8zrZ5pERQ0jPPSE3Wqw/clXvOq2F/Kw==",
+      "path": "system.drawing.common/9.0.8",
+      "hashPath": "system.drawing.common.9.0.8.nupkg.sha512"
     },
     "System.Memory/4.5.3": {
       "type": "package",

@@ -35,7 +35,6 @@
             usernameTxt = new TextBox();
             accAddBtn = new Button();
             passwordTxt = new TextBox();
-            roleTxt = new TextBox();
             accSaveBtn = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -44,6 +43,7 @@
             label4 = new Label();
             roleCombo = new ComboBox();
             listView1 = new ListView();
+            logoutBtn = new Button();
             SuspendLayout();
             // 
             // username
@@ -94,6 +94,7 @@
             // 
             // accAddBtn
             // 
+            accAddBtn.Enabled = false;
             accAddBtn.Location = new Point(178, 23);
             accAddBtn.Name = "accAddBtn";
             accAddBtn.Size = new Size(144, 29);
@@ -107,13 +108,6 @@
             passwordTxt.Name = "passwordTxt";
             passwordTxt.Size = new Size(144, 27);
             passwordTxt.TabIndex = 6;
-            // 
-            // roleTxt
-            // 
-            roleTxt.Location = new Point(339, 73);
-            roleTxt.Name = "roleTxt";
-            roleTxt.Size = new Size(144, 27);
-            roleTxt.TabIndex = 7;
             // 
             // accSaveBtn
             // 
@@ -170,9 +164,10 @@
             // 
             // roleCombo
             // 
+            roleCombo.Enabled = false;
             roleCombo.FormattingEnabled = true;
             roleCombo.Items.AddRange(new object[] { "manager", "cashier" });
-            roleCombo.Location = new Point(339, 114);
+            roleCombo.Location = new Point(339, 73);
             roleCombo.Name = "roleCombo";
             roleCombo.Size = new Size(144, 28);
             roleCombo.TabIndex = 14;
@@ -185,11 +180,21 @@
             listView1.TabIndex = 15;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
+            // logoutBtn
+            // 
+            logoutBtn.Location = new Point(12, 242);
+            logoutBtn.Name = "logoutBtn";
+            logoutBtn.Size = new Size(144, 29);
+            logoutBtn.TabIndex = 16;
+            logoutBtn.Text = "Log Out";
+            logoutBtn.UseVisualStyleBackColor = true;
+            // 
             // Profile
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(741, 234);
+            ClientSize = new Size(741, 283);
+            Controls.Add(logoutBtn);
             Controls.Add(listView1);
             Controls.Add(roleCombo);
             Controls.Add(label4);
@@ -198,7 +203,6 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(accSaveBtn);
-            Controls.Add(roleTxt);
             Controls.Add(passwordTxt);
             Controls.Add(accAddBtn);
             Controls.Add(usernameTxt);
@@ -221,7 +225,6 @@
         private TextBox usernameTxt;
         private Button accAddBtn;
         private TextBox passwordTxt;
-        private TextBox roleTxt;
         private Button accSaveBtn;
         private Label label1;
         private Label label2;
@@ -230,5 +233,6 @@
         private Label label4;
         private ComboBox roleCombo;
         private ListView listView1;
+        private Button logoutBtn;
     }
 }

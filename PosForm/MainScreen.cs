@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using PosLibrary.model;
+using PosLibrary.repo;
 using PosLibrary.serve;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
@@ -20,7 +21,7 @@ namespace PosForm
         private ProductCategoryServe productCategoryServe;
         private User currentUser;
 
-        public string DbPath = "\"C:\\Users\\erka\\source\\repos\\Pos\\PosForm\\PosDatabase.db\"";
+        //private string DbPath = "\"C:\\Users\\erka\\source\\repos\\Pos\\PosForm\\PosDatabase.db\"";
 
 
         DataBase Testdb;
@@ -31,7 +32,7 @@ namespace PosForm
 
             InitializeComponent();
             currentUser = user;
-            ConnectionString = $"Data Source={DbPath};";
+            ConnectionString = DatabaseConfig.ConnectionString;
             productServe = new ProductServe(ConnectionString);
             cartServe = new CartServe(ConnectionString);
             productCategoryServe = new ProductCategoryServe(ConnectionString);
@@ -90,7 +91,7 @@ namespace PosForm
         }
         private void SearchTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            LoadCategoriesInCategoriesPanel();
             string keyword = SearchTextBox.Text;
             var filteredProducts = productServe.SearchProductByName(keyword);
 
@@ -105,6 +106,7 @@ namespace PosForm
 
         private void LoadCategoriesInCategoriesPanel()
         {
+            categoriesPanel.Controls.Clear();
             foreach (var category in productCategoryServe.GetAllProductCategory())
             {
                 Button categoryBtn = new Button
@@ -137,11 +139,6 @@ namespace PosForm
             productsPanel.WrapContents = false;
             productsPanel.AutoScroll = true;
         }
-        private void addProductToProductTable(string itemName, decimal price)
-        {
-
-        }
-
 
         private void MainScreen_Load(object sender, EventArgs e)
         {
@@ -152,10 +149,14 @@ namespace PosForm
         private void PayButton_Click_1(object sender, EventArgs e)
         {
             int totalPrice = cartServe.CalculateTotal();
-            Form payment = new Payment(totalPrice);
+            Form payment = new Payment(totalPrice, cartServe);
             payment.ShowDialog();
         }
-
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cartServe.ClearCart();
+            ReloadCartPanel();
+        } 
         private void ExitButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -165,6 +166,7 @@ namespace PosForm
         {
             Form products = new Products(currentUser);
             products.ShowDialog();
+
         }
 
         private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,5 +180,6 @@ namespace PosForm
             Form profile = new Profile(currentUser);
             profile.ShowDialog();
         }
+
     }
 }

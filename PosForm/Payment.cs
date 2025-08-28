@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PosLibrary.repo;
+using PosLibrary.serve;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +15,13 @@ namespace PosForm
     public partial class Payment : Form
     {
         private decimal TotalAmount;
-        public Payment(int totalAmount)
+        private CartServe cart;
+        private string connection;
+        public Payment(int totalAmount, CartServe cart)
         {
+            connection = DatabaseConfig.ConnectionString;
             InitializeComponent();
+            cart = new CartServe(connection);
             TotalAmount = totalAmount;
             AmountLabel.Text = $"${totalAmount}";
         }
@@ -66,6 +72,11 @@ namespace PosForm
                     btn.Enabled = true;
                 }
             }
+        }
+
+        private void confirmBtn_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

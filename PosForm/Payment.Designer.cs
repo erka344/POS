@@ -82,6 +82,7 @@
             confirmBtn.TabIndex = 45;
             confirmBtn.Text = "confirm";
             confirmBtn.UseVisualStyleBackColor = true;
+            confirmBtn.Click += confirmBtn_Click;
             // 
             // cancelBtn
             // 

@@ -23,11 +23,12 @@ namespace PosLibrary.repo
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = @"INSERT INTO Products (Name, Price, CategoryId, ImageName) VALUES (@name, @price, @categoryId, @imageName)";
+                command.CommandText = @"INSERT INTO Products (Name, Price, CategoryId, ImageName, Discount) VALUES (@name, @price, @categoryId, @imageName, @discount)";
                 command.Parameters.AddWithValue("@name", product.Name);
                 command.Parameters.AddWithValue("@price", product.price);
                 command.Parameters.AddWithValue("@categoryId", product.CategoryId);
                 command.Parameters.AddWithValue("@imageName", product.ImagePath);
+                command.Parameters.AddWithValue("@discount", product.Discount);
 
                 command.ExecuteNonQuery();
             }
@@ -39,12 +40,13 @@ namespace PosLibrary.repo
                 connection.Open();
                 var command = connection.CreateCommand();
                 command.CommandText = @"UPDATE Products
-                                    SET Name = @name, Price = @price, CategoryId = @categoryId, ImageName = @imageName
+                                    SET Name = @name, Price = @price, CategoryId = @categoryId, ImageName = @imageName, Discount = @discount
                                     WHERE Id = @id";
                 command.Parameters.AddWithValue("@name", product.Name);
                 command.Parameters.AddWithValue("@price", product.price);
                 command.Parameters.AddWithValue("@categoryId", product.CategoryId);
                 command.Parameters.AddWithValue("@imageName", product.ImagePath);
+                command.Parameters.AddWithValue("@discount", product.Discount);
                 command.Parameters.AddWithValue("@id", product.Id);
                 command.ExecuteNonQuery();
             }
@@ -73,7 +75,7 @@ namespace PosLibrary.repo
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT Id, Name, Price, CategoryId, ImageName FROM Products";
+                command.CommandText = "SELECT Id, Name, Price, CategoryId, ImageName, Discount FROM Products";
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -84,7 +86,8 @@ namespace PosLibrary.repo
                             Name = reader["Name"].ToString(),
                             price = (int)Convert.ToDecimal(reader["Price"]),
                             CategoryId = Convert.ToInt32(reader["CategoryId"]),
-                            ImagePath = reader["ImageName"].ToString()
+                            ImagePath = reader["ImageName"].ToString(),
+                            Discount = (int)Convert.ToDecimal(reader["Discount"])
                         });
                     }
                 }
@@ -98,7 +101,7 @@ namespace PosLibrary.repo
             {
                 connection.Open();
                 var command = connection.CreateCommand();
-                command.CommandText = @"SELECT Id, Name, Price, CategoryId, ImageName
+                command.CommandText = @"SELECT Id, Name, Price, CategoryId, ImageName, Discount
                                     FROM Products
                                     WHERE CategoryId = @categoryId";
                 command.Parameters.AddWithValue("@categoryId", categoryId);
@@ -112,7 +115,8 @@ namespace PosLibrary.repo
                             Name = reader["Name"]?.ToString(),
                             price = Convert.ToInt32(reader["Price"]),
                             CategoryId = Convert.ToInt32(reader["CategoryId"]),
-                            ImagePath = reader["ImageName"]?.ToString()
+                            ImagePath = reader["ImageName"]?.ToString(),
+                            Discount = (int)Convert.ToDecimal(reader["Discount"])
                         });
                     }
                 }
@@ -126,7 +130,7 @@ namespace PosLibrary.repo
             using (var connection = new SqliteConnection(connectionString))
             {
                 connection.Open();
-                string Qry = "SELECT Id, Name, Price, CategoryId, ImageName FROM Products WHERE Name LIKE @name";
+                string Qry = "SELECT Id, Name, Price, CategoryId, ImageName, Discount FROM Products WHERE Name LIKE @name";
 
                 using(var com  = new SqliteCommand(Qry, connection))
                 {
@@ -141,7 +145,8 @@ namespace PosLibrary.repo
                                 Name = reader["Name"]?.ToString(),
                                 price = Convert.ToInt32(reader["Price"]),
                                 CategoryId = Convert.ToInt32(reader["CategoryId"]),
-                                ImagePath = reader["ImageName"]?.ToString()
+                                ImagePath = reader["ImageName"]?.ToString(),
+                                Discount = (int)Convert.ToDecimal(reader["Discount"])
                             });
                         }
                     }

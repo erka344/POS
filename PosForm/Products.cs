@@ -193,6 +193,7 @@ namespace PosForm
                 pictureBox2.Image.Save(fullPath); // зургаа хадгалах
 
                 UsedProduct.ImagePath = fileName; // зөвхөн нэрийг хадгалах
+
             } else { UsedProduct.ImagePath = "default.jpg"; }
 
             if (products.Any())
