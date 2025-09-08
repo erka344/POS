@@ -147,22 +147,7 @@
           }
         }
       },
-      "Microsoft.Win32.SystemEvents/9.0.8": {
-        "runtime": {
-          "lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.825.36511"
-          }
-        },
-        "runtimeTargets": {
-          "runtimes/win/lib/net9.0/Microsoft.Win32.SystemEvents.dll": {
-            "rid": "win",
-            "assetType": "runtime",
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.825.36511"
-          }
-        }
-      },
+      "Microsoft.Win32.SystemEvents/9.0.8": {},
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.8": {
         "dependencies": {
           "SQLitePCLRaw.lib.e_sqlite3": "2.1.8",
@@ -344,16 +329,6 @@
       "System.Drawing.Common/9.0.8": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "9.0.8"
-        },
-        "runtime": {
-          "lib/net9.0/System.Drawing.Common.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.825.36801"
-          },
-          "lib/net9.0/System.Private.Windows.Core.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.825.36801"
-          }
         }
       },
       "System.Memory/4.5.3": {},

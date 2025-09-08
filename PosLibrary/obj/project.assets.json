@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {
+    "net9.0-windows7.0": {
       "Microsoft.Data.Sqlite.Core/9.0.4": {
         "type": "package",
         "dependencies": {
@@ -165,34 +165,34 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net9.0": [
+    "net9.0-windows7.0": [
       "Microsoft.Data.Sqlite.Core >= 9.0.4",
       "System.Data.SQLite.Core >= 1.0.119"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\erka\\.nuget\\packages\\": {},
+    "C:\\Users\\erdeneochirerka\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\erka\\source\\repos\\Pos\\PosLibrary\\PosLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\erdeneochirerka\\Desktop\\windowsPos\\POS\\PosLibrary\\PosLibrary.csproj",
       "projectName": "PosLibrary",
-      "projectPath": "C:\\Users\\erka\\source\\repos\\Pos\\PosLibrary\\PosLibrary.csproj",
-      "packagesPath": "C:\\Users\\erka\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\erka\\source\\repos\\Pos\\PosLibrary\\obj\\",
+      "projectPath": "C:\\Users\\erdeneochirerka\\Desktop\\windowsPos\\POS\\PosLibrary\\PosLibrary.csproj",
+      "packagesPath": "C:\\Users\\erdeneochirerka\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\erdeneochirerka\\Desktop\\windowsPos\\POS\\PosLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\erka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\erdeneochirerka\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net9.0"
+        "net9.0-windows"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -200,8 +200,8 @@
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net9.0-windows7.0": {
+          "targetAlias": "net9.0-windows",
           "projectReferences": {}
         }
       },
@@ -215,11 +215,11 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
-      "net9.0": {
-        "targetAlias": "net9.0",
+      "net9.0-windows7.0": {
+        "targetAlias": "net9.0-windows",
         "dependencies": {
           "Microsoft.Data.Sqlite.Core": {
             "target": "Package",
@@ -244,9 +244,12 @@
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

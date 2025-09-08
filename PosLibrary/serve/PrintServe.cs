@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PosLibrary.serve
 {
-    class PrintServe
+    public class PrintServe
     {
         private CartServe cart;
         private int totalAmount;
@@ -25,41 +25,51 @@ namespace PosLibrary.serve
             date = DateOnly.FromDateTime(DateTime.Now);
         }
         
-        private void MakeReceipt()
+        private void MakeReceipt(object sender, PrintPageEventArgs e)
         {
             StringBuilder receipt = new StringBuilder();
             receipt.AppendLine("----- Receipt -----");
             receipt.AppendLine($"Date: {date}");
             receipt.AppendLine("-------------------");
             receipt.AppendLine("Items:");
-            foreach (var item in cart.Products)
+            if (cart == null || cart.Products == null || cart.Products.Count == 0)
             {
-                receipt.AppendLine($"{item.Name} x{item.Quantity} - ${item.price * item.Quantity}");
+                receipt.AppendLine("Cart is empty.");
             }
+            else
+            {
+                foreach (var item in cart.Products)
+                {
+                    if (item == null) continue;
+                    receipt.AppendLine($"{item.Name} x{item.Quantity} - ${item.price * item.Quantity}");
+                }
+            }
+
             receipt.AppendLine("-------------------");
             receipt.AppendLine($"Total: ${totalAmount}");
             receipt.AppendLine($"Paid: ${paidAmount}");
             receipt.AppendLine($"Change: ${changeAmount}");
             receipt.AppendLine("-------------------");
             receipt.AppendLine("Thank you for your purchase!");
-            Console.WriteLine(receipt.ToString());
+            e.Graphics.DrawString(receipt.ToString(), new Font("Arial", 12), Brushes.Black, 50, 50);
+
         }
 
         public void PrintReceipt()
         {
-            //PrintDocument printDocument = new PrintDocument();
-            //printDocument.PrintPage += MakeReceipt ;
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += MakeReceipt;
 
-            //using (PrintDialog printDialog = new PrintDialog())
-            //{
-            //    printDialog.Document = printDocument;
-            //    if (printDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        printDocument.PrinterSettings = printDialog.PrinterSettings;
-            //        printDocument.Print();
-            //    }
-            //}
-            
+            using (PrintDialog printDialog = new PrintDialog())
+            {
+                printDialog.Document = printDocument;
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    printDocument.PrinterSettings = printDialog.PrinterSettings;
+                    printDocument.Print();
+                }
+            }
+
         }   
     }
 }

@@ -8,7 +8,7 @@ namespace PosLibrary.repo
 {
     public static class DatabaseConfig
     {
-        public static string DbPath = "\"C:\\Users\\erka\\source\\repos\\Pos\\PosForm\\PosDatabase.db\"";
+        public static string DbPath = @"C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosForm\PosDatabase.db";
         public static string ConnectionString = $"Data Source={DbPath};";
     }
 }

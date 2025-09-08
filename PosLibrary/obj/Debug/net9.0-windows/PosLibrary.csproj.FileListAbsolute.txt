@@ -1,0 +1,13 @@
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.csproj.AssemblyReference.cache
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.AssemblyInfoInputs.cache
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.AssemblyInfo.cs
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.csproj.CoreCompileInputs.cache
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.sourcelink.json
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\bin\Debug\net9.0-windows\PosLibrary.deps.json
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\bin\Debug\net9.0-windows\PosLibrary.dll
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\bin\Debug\net9.0-windows\PosLibrary.pdb
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.dll
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\refint\PosLibrary.dll
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\PosLibrary.pdb
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosLibrary\obj\Debug\net9.0-windows\ref\PosLibrary.dll

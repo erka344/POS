@@ -7,10 +7,11 @@ namespace PosForm
     public partial class Form1 : Form
     {
         private UserServe userServe;
-        private readonly string ConnectionString = $"Data Source=\"C:\\Users\\erka\\source\\repos\\Pos\\PosForm\\PosDatabase.db\";";
+        private readonly string ConnectionString ;
         public Form1()
         {
             InitializeComponent();
+            ConnectionString = DatabaseConfig.ConnectionString;
             IUserRepo repo = new UserRepo(ConnectionString);
             userServe = new UserServe(repo);
         }

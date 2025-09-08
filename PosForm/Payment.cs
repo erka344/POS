@@ -14,14 +14,15 @@ namespace PosForm
 {
     public partial class Payment : Form
     {
-        private decimal TotalAmount;
+        private int TotalAmount;
         private CartServe cart;
         private string connection;
+        private PrintServe printServe;
         public Payment(int totalAmount, CartServe cart)
         {
             connection = DatabaseConfig.ConnectionString;
             InitializeComponent();
-            cart = new CartServe(connection);
+            this.cart = cart;
             TotalAmount = totalAmount;
             AmountLabel.Text = $"${totalAmount}";
         }
@@ -76,7 +77,11 @@ namespace PosForm
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-           
+            int paidAmount = int.Parse(AmountTextBox.Text);
+            //int change = int.Parse(ChangeLabel.Text);
+            
+            printServe = new PrintServe(cart, TotalAmount, paidAmount, paidAmount-TotalAmount);
+            printServe.PrintReceipt();
         }
     }
 }
