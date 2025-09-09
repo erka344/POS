@@ -263,3 +263,6 @@ C:\Users\erka\source\repos\Pos\PosTest\obj\Debug\net9.0\refint\PosTest.dll
 C:\Users\erka\source\repos\Pos\PosTest\obj\Debug\net9.0\PosTest.pdb
 C:\Users\erka\source\repos\Pos\PosTest\obj\Debug\net9.0\PosTest.genruntimeconfig.cache
 C:\Users\erka\source\repos\Pos\PosTest\obj\Debug\net9.0\ref\PosTest.dll
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosTest\obj\Debug\net9.0\PosTest.dll
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosTest\obj\Debug\net9.0\refint\PosTest.dll
+C:\Users\erdeneochirerka\Desktop\windowsPos\POS\PosTest\obj\Debug\net9.0\PosTest.pdb

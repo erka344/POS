@@ -71,7 +71,7 @@ namespace PosLibrary.repo
         public List<Product> GetProducts()
         {
             var products = new List<Product>();
-            using (var connection = new SqliteConnection(connectionString))
+            using (var connection = new SqliteConnection(DatabaseConfig.ConnectionString))
             {
                 connection.Open();
                 var command = connection.CreateCommand();

@@ -82,6 +82,8 @@ namespace PosForm
             
             printServe = new PrintServe(cart, TotalAmount, paidAmount, paidAmount-TotalAmount);
             printServe.PrintReceipt();
+            this.Close();
+            MessageBox.Show("Success", "Payment");
         }
     }
 }

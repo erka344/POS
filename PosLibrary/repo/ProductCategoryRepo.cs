@@ -18,7 +18,7 @@ namespace PosLibrary.repo
         }
         public void AddCategory(ProductCategory category)
         {
-            using (var connect = new SqliteConnection(this.connectionString))
+            using (var connect = new SqliteConnection(connectionString))
             {
                 connect.Open();
                 string Qry = "INSERT INTO ProductCategories (Name) VALUES(@name)";
@@ -67,7 +67,7 @@ namespace PosLibrary.repo
             var list = new List<ProductCategory>();
             using (var connect = new SqliteConnection(this.connectionString))
             {
-                connect.Open();
+                sconnect.Open();
                 string Qry = "SELECT Id, Name FROM ProductCategories";
                 using (var com = new SqliteCommand(Qry, connect))
                 {
@@ -90,7 +90,7 @@ namespace PosLibrary.repo
         public List<ProductCategory> GetCategoryByName(string name)
         {
             var list = new List<ProductCategory>();
-            using (var connect = new SqliteConnection(this.connectionString))
+            using (var connect = new SqliteConnection(connectionString))
             {
                 connect.Open();
                 string Qry = "SELECT Id, Name FROM ProductCategories WHERE Name LIKE @name";
