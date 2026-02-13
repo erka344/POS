@@ -1,10 +1,19 @@
+﻿using PosLibrary.repo.@interface;
+using PosLibrary.repo;
+using PosLibrary.serve;
+
 namespace PosForm
 {
     public partial class Form1 : Form
     {
+        private UserServe userServe;
+        private readonly string ConnectionString ;
         public Form1()
         {
             InitializeComponent();
+            ConnectionString = DatabaseConfig.ConnectionString;
+            IUserRepo repo = new UserRepo(ConnectionString);
+            userServe = new UserServe(repo);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -14,24 +23,24 @@ namespace PosForm
 
         private void Loginbutton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.Show();
+            var ValidUser = userServe.Authentication(UserNameTextBox.Text, PasswordTextBox.Text);
+
+            if (ValidUser != null)
+            {
+                // Нэвтрэлт амжилттай бол login form-ыг нууж, гол дэлгэц гаргана
+                this.Hide();
+
+                MainScreen mainScreen = new MainScreen(ValidUser);
+                mainScreen.ShowDialog();
+
+                // Гол дэлгэц хаагдсан дараа login form-ыг хаах
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Хэрэглэгчийн нэр эсвэл нууц үг буруу байна.", "Нэвтрэлт амжилтгүй", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

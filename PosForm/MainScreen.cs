@@ -4,22 +4,182 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using PosLibrary.model;
+using PosLibrary.repo;
+using PosLibrary.serve;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace PosForm
 {
     public partial class MainScreen : Form
     {
-        public MainScreen()
+        private string ConnectionString;
+        private ProductServe productServe;
+        private CartServe cartServe;
+        private ProductCategoryServe productCategoryServe;
+        private User currentUser;
+
+        //private string DbPath = "\"C:\\Users\\erka\\source\\repos\\Pos\\PosForm\\PosDatabase.db\"";
+
+
+        DataBase Testdb;
+
+
+        public MainScreen(User user)
         {
+
             InitializeComponent();
-        }
+            currentUser = user;
+            ConnectionString = DatabaseConfig.ConnectionString;
+            productServe = new ProductServe(ConnectionString);
+            cartServe = new CartServe(ConnectionString);
+            productCategoryServe = new ProductCategoryServe(ConnectionString);
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+            // Test data ачааллах
+            LoadProductsToUI();
+            LoadCategoriesInCategoriesPanel();
+
+        }
+        private void LoadProductsToUI()
         {
+            List<Product> products = productServe.GetProducts();
+
+            foreach (var product in products)
+            {
+                ProductUC productUC = new ProductUC(product);
+                productUC.AddToCartBtnClicked += (s, e) => AddProductToProductFlowPanel(product);
+                productsPanel.Controls.Add(productUC);
+            }
+
+            productsPanel.FlowDirection = FlowDirection.LeftToRight;
+            productsPanel.WrapContents = false;
+            productsPanel.AutoScroll = true;
+        }
+
+        public void AddProductToProductFlowPanel(Product product)
+        {
+            cartServe.AddProductToCart(product);
+            ReloadCartPanel();
+        }
+
+        private void ReloadCartPanel()
+        {
+            ProductFlowPanel.Controls.Clear();
+
+            foreach (var product in cartServe.Products)
+            {
+                RowProductUC row = new RowProductUC(product);
+
+                row.AddButtonClicked += (s, e) =>
+                {
+                    cartServe.AddQuantity(product.Name);
+                    ReloadCartPanel();
+                };
+
+                row.MinusButtonClicked += (s, e) =>
+                {
+                    cartServe.MinusQuantity(product.Name);
+                    ReloadCartPanel();
+                };
+
+                row.LoadingRowProductUC();
+                ProductFlowPanel.Controls.Add(row);
+            }
+            TotalPriceLabel.Text = $"${cartServe.CalculateTotal()}";
+        }
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            LoadCategoriesInCategoriesPanel();
+            string keyword = SearchTextBox.Text;
+            var filteredProducts = productServe.SearchProductByName(keyword);
+
+            productsPanel.Controls.Clear();
+            foreach (var product in filteredProducts)
+            {
+                var productUC = new ProductUC(product);
+                productUC.AddToCartBtnClicked += (s, e2) => AddProductToProductFlowPanel(product);
+                productsPanel.Controls.Add(productUC);
+            }
+        }
+
+        private void LoadCategoriesInCategoriesPanel()
+        {
+            categoriesPanel.Controls.Clear();
+            foreach (var category in productCategoryServe.GetAllProductCategory())
+            {
+                Button categoryBtn = new Button
+                {
+                    Text = category.Name,
+                    Size = new Size(120, 90),
+                    ForeColor = Color.Blue,
+                };
+                categoriesPanel.Controls.Add(categoryBtn);
+                categoryBtn.Click += (s, e) => LoadingProductsInCategoriesPanel(category.Id);
+            }
+
+            categoriesPanel.FlowDirection = FlowDirection.TopDown;
+            categoriesPanel.WrapContents = true;
+            categoriesPanel.AutoScroll = true;
 
         }
+        private void LoadingProductsInCategoriesPanel(int categoryId)
+        {
+            List<Product> products = productServe.GetProductByCategory(categoryId);
+            productsPanel.Controls.Clear();
+            foreach (var product in products)
+            {
+                ProductUC productUC = new ProductUC(product);
+                productUC.AddToCartBtnClicked += (s, e) => AddProductToProductFlowPanel(product);
+                productsPanel.Controls.Add(productUC);
+            }
+
+            productsPanel.FlowDirection = FlowDirection.LeftToRight;
+            productsPanel.WrapContents = false;
+            productsPanel.AutoScroll = true;
+        }
+
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+            //testProductPanel();
+
+        }
+
+        private void PayButton_Click_1(object sender, EventArgs e)
+        {
+            int totalPrice = cartServe.CalculateTotal();
+            Form payment = new Payment(totalPrice, cartServe);
+            payment.ShowDialog();
+        }
+        private void clear_Click(object sender, EventArgs e)
+        {
+            cartServe.ClearCart();
+            ReloadCartPanel();
+        } 
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form products = new Products(currentUser);
+            products.ShowDialog();
+
+        }
+
+        private void categoriesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form category = new Categories(currentUser);
+            category.ShowDialog();
+        }
+
+        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form profile = new Profile(currentUser);
+            profile.ShowDialog();
+        }
+
     }
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosForm", "PosForm\PosForm.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosLibrary", "PosLibrary\PosLibrary.csproj", "{0821FF25-EABB-482A-9C2E-2A555C14C158}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PosTest", "PosTest\PosTest.csproj", "{12190775-BB57-4106-9E1A-3EFF8368DDBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0821FF25-EABB-482A-9C2E-2A555C14C158}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0821FF25-EABB-482A-9C2E-2A555C14C158}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0821FF25-EABB-482A-9C2E-2A555C14C158}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12190775-BB57-4106-9E1A-3EFF8368DDBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12190775-BB57-4106-9E1A-3EFF8368DDBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12190775-BB57-4106-9E1A-3EFF8368DDBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12190775-BB57-4106-9E1A-3EFF8368DDBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
